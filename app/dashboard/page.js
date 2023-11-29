@@ -7,11 +7,23 @@ export const metadata = {
 
 export default async function Page() {
 
-  const u = await userController.getUser().then(res => res.rows);
+
+  let u = await userController.getUsers()
+    .then(res => res.rows)
+
+
 
   return <div>
 
-    <p>Dashboard Page</p>
-    <p>{JSON.stringify(u)}</p>
+    {
+      u.map((e) => <div style={{ marginBottom: "15px" }} key={e.id}>
+        <p>id {e.id}</p>
+        <p>Имя {e.name}</p>
+        <p>Фамилия {e.surname}</p>
+      </div>)
+    }
+
   </div>
+
+
 }
