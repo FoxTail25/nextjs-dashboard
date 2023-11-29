@@ -1,31 +1,26 @@
 'use client'
-
-import { useEffect } from "react"
 import { useRef } from "react"
 
-export default function TestInner({serverAnswer, text}) { 
+export default function TestInner({ addUser }) {
 
-    
-    
-    
-    const testInner=useRef(null)
-    useEffect(()=> {
-        testInner.current.innerHTML = text;
-        return ()=>{}
-    },[text])
+  const name = useRef(null)
+  const surname = useRef(null)
 
-    
-
-    console.log('it`s client', serverAnswer)
-    
-    return <>
-    <div ref={testInner}></div>
-    {
-      serverAnswer.map((e) => <div style={{ marginBottom: "15px" }} key={e.id}>
-        <p>id {e.id}</p>
-        <p>Имя {e.name}</p>
-        <p>Фамилия {e.surname}</p>
-      </div>)
+  async function handleClick() {
+    let obj = {
+      name: name.current.value,
+      surname: surname.current.value,
     }
-    </>
+
+    name.current.value = '';
+    surname.current.value = '';
+    let answer = await addUser(obj)
+    console.log('new user', answer)
+  }
+
+  return <>
+    <input ref={name}></input>
+    <input ref={surname}></input>
+    <button onClick={handleClick}>addUser</button>
+  </>
 }
