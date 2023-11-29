@@ -1,5 +1,6 @@
 // import { promise } from 'zod';
 import db from '../api/base.js'
+import { unstable_noStore as noStore } from 'next/cache';
 
 class UserController {
 
@@ -13,6 +14,7 @@ class UserController {
   /////////////////////////////////////////////////////////////
 
   async getUsers() {
+    noStore()
     let answer;
     await db.query('select * from person').then(res => {
       return answer = res.rows

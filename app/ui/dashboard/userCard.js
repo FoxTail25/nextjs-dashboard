@@ -1,9 +1,13 @@
 "use client"
+import { useContext } from "next/dist/shared/lib/html-context.shared-runtime";
 import { useState } from "react";
+import myContext from '../../lib/store.js'
 
 export default function UserCard({users, delUser}) {
 
     let [user, setuser] = useState(users)
+    // const context = useContext(myContext)
+    // console.log(context)
 
     async function del(e) {
         

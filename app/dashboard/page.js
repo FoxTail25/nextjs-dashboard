@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import userController from '../lib/userController.js';
 import UserCard from '../ui/dashboard/userCard.js'
 
+
 export const metadata = {
   title: 'Dashboard',
 }
@@ -9,6 +10,8 @@ export const metadata = {
 export default async function Page() {
 
   let users = await userController.getUsers()
+
+
 
   async function delUser(id) {
     'use server'
@@ -19,11 +22,9 @@ export default async function Page() {
     users,
     delUser
   }
-    
+
   return <div>
-
-<UserCard {...props}/>
-
+      <UserCard {...props} />
   </div>
 
 }
