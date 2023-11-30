@@ -9,7 +9,7 @@ class UserController {
     let answer;
     await db.query('insert into person (name, surname) values($1, $2) RETURNING *', [name, surname]).then(res => answer = res.rows[0]);
     return answer
-  }
+  } 
 
   /////////////////////////////////////////////////////////////
 
